@@ -1,0 +1,5 @@
+within ArchetypePWH_2021.FWAltBiesdorf58HinterhausFreiwilligeFeuerwehr;
+package FWAltBiesdorf58HinterhausFreiwilligeFeuerwehr_DataBase
+  extends Modelica.Icons.Package;
+  
+end FWAltBiesdorf58HinterhausFreiwilligeFeuerwehr_DataBase;

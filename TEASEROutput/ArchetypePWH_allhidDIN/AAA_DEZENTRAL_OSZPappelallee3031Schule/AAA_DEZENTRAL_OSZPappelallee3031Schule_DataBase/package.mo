@@ -1,0 +1,5 @@
+within ArchetypePWH_allhidDIN.AAA_DEZENTRAL_OSZPappelallee3031Schule;
+package AAA_DEZENTRAL_OSZPappelallee3031Schule_DataBase
+  extends Modelica.Icons.Package;
+  
+end AAA_DEZENTRAL_OSZPappelallee3031Schule_DataBase;

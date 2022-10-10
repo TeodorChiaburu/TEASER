@@ -12,7 +12,7 @@ def pwh_generate_archetype(ds):
     # used data base). Be careful: Dymola does not like whitespaces in names and
     # filenames, thus we will delete them anyway in TEASER.
     prj = Project(load_data=True)
-    prj.name = "ArchetypePWH_2021"
+    prj.name = "ArchetypePWH_allhidDIN"
 
     # There are two different types of archetype groups: residential and
     # non-residential buildings. Two API functions offer the opportunity to
@@ -27,10 +27,10 @@ def pwh_generate_archetype(ds):
             method='bmvbs',
             usage='institute',                 # Is this the right type? for all the bldgs?
             name=ds.loc[i, 'objektname'],
-            year_of_construction=1988,         # Do we have this?
-            number_of_floors=4,                # Do we have this?
-            height_of_floors=3.5,              # Do we have this?
-            net_leased_area=ds.loc[i, 'area'])
+            year_of_construction=ds.loc[i, 'baujahr'],
+            number_of_floors=ds.loc[i, 'gebaeude_anzahl_stockwerke'],
+            height_of_floors=ds.loc[i, 'hoehe_der_stockwerke'],
+            net_leased_area=ds.loc[i, 'flaeche'])
 
     return prj
 
@@ -38,9 +38,9 @@ def pwh_generate_archetype(ds):
 if __name__ == '__main__':
 
     # Load dataset from csv
-    path_to_csv = "../../../PWH_Senercon_New_Version/data/pwh_fulldata.csv"
+    path_to_csv = "../../../PWH_Senercon_New_Version/data/all_hid/building_data_all_hid_DIN_norm_aktuelles_verbrauch.csv"
     ds = pd.read_csv(path_to_csv)
-    ds = ds[ds['year'] == 2021]  # for simplicity
+    #ds = ds[ds['year'] == 2021]  # for simplicity (only for pwh_fulldata)
 
     prj = pwh_generate_archetype(ds)
 

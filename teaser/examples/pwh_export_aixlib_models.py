@@ -70,7 +70,8 @@ if __name__ == '__main__':
     # Load dataset from csv
     path_to_csv = "../../../PWH_Senercon_New_Version/data/all_hid/building_data_all_hid_DIN_norm_aktuelles_verbrauch.csv"
     ds = pd.read_csv(path_to_csv)
-    #ds = ds[ds['year'] == 2021]  # for simplicity (only for pwh_fulldata)
+    ds = ds[ds['objektname'].str.contains('OSZ')]  # only select schools
+
     path = pwh_export_aixlib(ds)
 
     print(f"Exported PWH model to {path}")

@@ -12,7 +12,7 @@ def pwh_generate_archetype(ds):
     # used data base). Be careful: Dymola does not like whitespaces in names and
     # filenames, thus we will delete them anyway in TEASER.
     prj = Project(load_data=True)
-    prj.name = "ArchetypePWH_allhidDIN"
+    prj.name = "ArchetypePWH_allhidDIN_schools"
 
     # There are two different types of archetype groups: residential and
     # non-residential buildings. Two API functions offer the opportunity to
@@ -22,15 +22,15 @@ def pwh_generate_archetype(ds):
     # office and a laboratory (a.k.a. institute)) the function
     # Project.add_non_residential() is used. The meaning of compulsory parameters
     # does not differ from the residential archetype building.
-    for i in range(len(ds)):
+    for ind, row in ds.iterrows():
         prj.add_non_residential(
             method='bmvbs',
-            usage='institute',                 # Is this the right type? for all the bldgs?
-            name=ds.loc[i, 'objektname'],
-            year_of_construction=ds.loc[i, 'baujahr'],
-            number_of_floors=ds.loc[i, 'gebaeude_anzahl_stockwerke'],
-            height_of_floors=ds.loc[i, 'hoehe_der_stockwerke'],
-            net_leased_area=ds.loc[i, 'flaeche'])
+            usage='school',
+            name=row['objektname'],
+            year_of_construction=row['baujahr'],
+            number_of_floors=row['gebaeude_anzahl_stockwerke'],
+            height_of_floors=row['hoehe_der_stockwerke'],
+            net_leased_area=row['flaeche'])
 
     return prj
 
